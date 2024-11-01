@@ -20,6 +20,7 @@ const ProductDetails: React.FC = () => {
   const navigate = useNavigate()
 
   const handleAddToCart = () => {
+    console.log(selectedValue, 'asdasd')
     if (product) {
       const currentProduct: Product = {
         id: product.id!,
@@ -28,7 +29,7 @@ const ProductDetails: React.FC = () => {
         description: product.description || 'Default Description',
         quantity: selectedValue || 1,
       }
-
+      console.log(currentProduct, 'asdasda')
       addToCart(currentProduct)
       navigate('/cart')
     }

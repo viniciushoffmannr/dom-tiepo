@@ -10,7 +10,7 @@ import { CartContext } from '../context/CartContext'
 const Checkout: React.FC = () => {
   const [paymentMethod, setPaymentMethod] = useState<'cartao' | 'pix'>('pix')
 
-  const { cartItems } = useContext(CartContext)!
+  const { cartItems, totalPrice } = useContext(CartContext)!
   const navigate = useNavigate()
   let address: Address | null = null
 
@@ -45,6 +45,7 @@ const Checkout: React.FC = () => {
           </div>
         )}
       </div>
+
       <div className="mt-3 border cursor-pointer mb-3 rounded bg-zinc-300 border-red-500 p-4 ">
         <label className="font-semibold text-center text-red-500 mb-2">
           Forma de pagamento
@@ -66,6 +67,12 @@ const Checkout: React.FC = () => {
             <p>Escaneie o QR Code</p>
           </div>
         )}
+      </div>
+      <div className="flex justify-between items-center font-bold text-lg">
+        <span className="font-bold text-white">Total:</span>
+        <span className="font-bold text-red-600">
+          R$ {totalPrice.toFixed(2)}
+        </span>
       </div>
       <button
         onClick={handleSubmit}
