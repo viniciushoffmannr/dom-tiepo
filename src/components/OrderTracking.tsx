@@ -6,11 +6,11 @@ interface Location {
 }
 
 const mockDeliveryRoute: Location[] = [
-  { latitude: -23.5489, longitude: -46.6388 }, // Ponto inicial
+  { latitude: -23.5489, longitude: -46.6388 },
   { latitude: -23.5505, longitude: -46.6333 },
   { latitude: -23.5525, longitude: -46.6292 },
   { latitude: -23.5542, longitude: -46.6268 },
-  { latitude: -23.5558, longitude: -46.6242 }, // Próximo do cliente
+  { latitude: -23.5558, longitude: -46.6242 },
 ]
 
 const OrderTracking: React.FC = () => {
@@ -32,20 +32,18 @@ const OrderTracking: React.FC = () => {
     let statusIndex = 0
 
     const intervalId = setInterval(() => {
-      // Atualiza a posição
       if (locationIndex < mockDeliveryRoute.length - 1) {
         locationIndex += 1
         setCurrentLocation(mockDeliveryRoute[locationIndex])
       }
 
-      // Atualiza o status
       if (statusIndex < statusUpdates.length - 1) {
         statusIndex += 1
         setStatus(statusUpdates[statusIndex])
       } else {
         clearInterval(intervalId)
       }
-    }, 3000) // Atualiza a cada 3 segundos
+    }, 3000)
 
     return () => clearInterval(intervalId)
   }, [])

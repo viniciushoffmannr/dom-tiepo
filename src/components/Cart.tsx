@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import { CartContext } from '../context/CartContext'
-import { products } from '../mocks/data'
 import Items from './Items'
 import { useNavigate } from 'react-router-dom'
 import Footer from './Footer'

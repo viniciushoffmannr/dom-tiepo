@@ -10,13 +10,11 @@ import L, { LatLngExpression } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import Header from './Header'
 
-// Ícone personalizado para o motoboy
 const motoboyIcon = new L.Icon({
   iconUrl: require('../assets/motoboy-icon.png'),
   iconSize: [32, 32],
 })
 
-// Componente para atualizar a vista do mapa
 const MapView: React.FC<{ position: LatLngExpression }> = ({ position }) => {
   const map = useMap()
 
@@ -28,7 +26,6 @@ const MapView: React.FC<{ position: LatLngExpression }> = ({ position }) => {
 }
 
 const DeliveryTracking: React.FC = () => {
-  // Rota do motoboy (Caxias do Sul, RS)
   const route: LatLngExpression[] = [
     [-29.1687, -51.1797],
     [-29.1703, -51.1845],
@@ -55,7 +52,7 @@ const DeliveryTracking: React.FC = () => {
           return nextStep
         } else {
           clearInterval(interval)
-          setHasArrived(true) // Define que o motoboy chegou ao destino
+          setHasArrived(true)
           return prevStep
         }
       })
@@ -82,7 +79,7 @@ const DeliveryTracking: React.FC = () => {
             />
             <Polyline positions={route} color="blue" />
             <Marker position={position} icon={motoboyIcon} />
-            {/* Componente para atualizar a vista do mapa */}
+
             <MapView position={position} />
           </MapContainer>
           {hasArrived && (

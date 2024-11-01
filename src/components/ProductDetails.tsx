@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { CartContext } from '../context/CartContext'
+import { CartContext, Product } from '../context/CartContext'
 import { products } from '../mocks/data'
 import pizzaImage from '../assets/pizza.jpeg'
 
@@ -20,12 +20,18 @@ const ProductDetails: React.FC = () => {
   const navigate = useNavigate()
 
   const handleAddToCart = () => {
-    const currentProduct = { ...product, quantity: selectedValue }
+    if (product) {
+      const currentProduct: Product = {
+        id: product.id!,
+        name: product.name || 'Default Name',
+        price: product.price || 0,
+        description: product.description || 'Default Description',
+        quantity: selectedValue || 1,
+      }
 
-    console.log(currentProduct, 'asdasd')
-
-    addToCart(currentProduct)
-    navigate('/cart')
+      addToCart(currentProduct)
+      navigate('/cart')
+    }
   }
 
   if (!product) return <p>Produto não encontrado.</p>
