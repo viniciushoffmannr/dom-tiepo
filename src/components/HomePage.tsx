@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { products } from '../mocks/data'
 import { useContext } from 'react'
 import { CartContext } from '../context/CartContext'
@@ -19,7 +18,7 @@ const HomePage: React.FC = () => {
   return (
     <div>
       <Header />
-      <div className="px-3">
+      <div className="px-3 mb-24">
         <h1 className="text-2xl font-bold text-center text-gray-50 mb-4">
           Menu de Pizzas
         </h1>
@@ -28,6 +27,10 @@ const HomePage: React.FC = () => {
             <Items key={product.id} product={product} isCart={false} />
           ))}
         </div>
+        <h2 className="text-gray-50 text-center text-xl mt-4">
+          Selecione uma pizza doce e uma salgada para fazer um combo e ganhar
+          desconto!
+        </h2>
       </div>
       <Footer />
     </div>

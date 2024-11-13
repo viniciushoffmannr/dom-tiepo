@@ -9,6 +9,7 @@ import {
 import L, { LatLngExpression } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import Header from './Header'
+import { FaRegHandPeace } from 'react-icons/fa6'
 
 const motoboyIcon = new L.Icon({
   iconUrl: require('../assets/motoboy-icon.png'),
@@ -82,16 +83,48 @@ const DeliveryTracking: React.FC = () => {
 
             <MapView position={position} />
           </MapContainer>
-          {hasArrived && (
-            <div className="mt-5 px-6 py-3 bg-red-500 text-white rounded-md text-lg text-center">
-              O pedido chegou!
+          {hasArrived ? (
+            <div>
+              <div className="bg-red-600 border-l-4 border-red-800 p-2 rounded-lg shadow-lg">
+                <p className="mb-2 text-white font-bold text-center text-lg">
+                  O pedido chegou!
+                </p>
+                <p className="text-lg font-semibold text-white">
+                  🎉 Parabéns! Você ganhou{' '}
+                  <span className="font-bold text-yellow-200">
+                    1 selo de desconto
+                  </span>
+                  !
+                </p>
+                <p className="text-lg font-semibold text-white">
+                  Acumule{' '}
+                  <span className="font-bold text-yellow-200">10 selos</span> e
+                  ganhe uma{' '}
+                  <span className="font-bold text-yellow-200">
+                    pizza grátis
+                  </span>
+                  ! 🍕
+                </p>
+                <p className="text-sm font-bold text-white opacity-80">
+                  Cada compra te aproxima da pizza! Continue assim! 🎯
+                </p>
+              </div>
+
+              <div className="flex gap-2 justify-center mt-3">
+                <FaRegHandPeace size={23} color="black" />
+                <FaRegHandPeace size={23} color="black" />
+                <FaRegHandPeace size={23} color="black" />
+                <FaRegHandPeace size={23} color="black" />
+                <FaRegHandPeace size={23} color="black" />
+              </div>
             </div>
+          ) : (
+            <p className="text-center text-gray-700 mt-4">
+              Acompanhe seu motoboy enquanto ele se dirige ao seu endereço.
+              <br />
+              Tempo estimado de entrega: <strong>15 minutos</strong>.
+            </p>
           )}
-          <p className="text-center text-gray-700 mt-4">
-            Acompanhe seu motoboy enquanto ele se dirige ao seu endereço.
-            <br />
-            Tempo estimado de entrega: <strong>15 minutos</strong>.
-          </p>
         </div>
       </div>
     </div>

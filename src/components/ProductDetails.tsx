@@ -1,7 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { CartContext, Product } from '../context/CartContext'
 import { products } from '../mocks/data'
-import pizzaImage from '../assets/pizza.jpeg'
+import marguerita from '../assets/marguerita.jpg'
+import morango from '../assets/morango.jpg'
+import carne from '../assets/carne.webp'
 
 import { useNavigate, useParams } from 'react-router-dom'
 import Header from './Header'
@@ -13,6 +15,25 @@ const ProductDetails: React.FC = () => {
   const [selectedValue, setSelectedValue] = useState<number | ''>(1)
   const { addToCart } = useContext(CartContext)!
 
+  let imagePath = ''
+
+  switch (productId) {
+    case '1':
+      imagePath = marguerita
+      break
+
+    case '2':
+      imagePath = carne
+      break
+
+    case '3':
+      imagePath = morango
+      break
+
+    default:
+      break
+  }
+
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(Number(event.target.value))
   }
@@ -20,7 +41,6 @@ const ProductDetails: React.FC = () => {
   const navigate = useNavigate()
 
   const handleAddToCart = () => {
-    console.log(selectedValue, 'asdasd')
     if (product) {
       const currentProduct: Product = {
         id: product.id!,
@@ -29,9 +49,8 @@ const ProductDetails: React.FC = () => {
         description: product.description || 'Default Description',
         quantity: selectedValue || 1,
       }
-      console.log(currentProduct, 'asdasda')
       addToCart(currentProduct)
-      navigate('/cart')
+      navigate('/')
     }
   }
 
@@ -42,7 +61,7 @@ const ProductDetails: React.FC = () => {
       <Header />
       <div className="px-3">
         <div className="border bg-white rounded border-red-500 p-4 flex flex-col  items-center">
-          <img src={pizzaImage} alt="Pizza" className="w-32" />
+          <img src={imagePath} alt="Pizza" className="w-32 h-32" />
           <h1 className="text-red-500 text-xl mt-2 font-bold text-center">
             {product.name}
           </h1>

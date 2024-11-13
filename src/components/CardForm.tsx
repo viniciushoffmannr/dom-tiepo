@@ -39,7 +39,7 @@ const CreditCardForm: React.FC = () => {
 
   return (
     <div>
-      <h2 className="font-semibold text-center text-red-500 mb-2">
+      <h2 className="mt-2 font-semibold text-center text-red-500 mb-2">
         Cadastro de Cartão de Crédito
       </h2>
       <form className="space-y-4">

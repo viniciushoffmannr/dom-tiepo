@@ -47,7 +47,7 @@ const Checkout: React.FC = () => {
       </div>
 
       <div className="mt-3 border cursor-pointer mb-3 rounded bg-zinc-300 border-red-500 p-4 ">
-        <label className="font-semibold text-center text-red-500 mb-2">
+        <label className=" font-semibold text-center text-red-500 mb-3">
           Forma de pagamento
         </label>
         <select

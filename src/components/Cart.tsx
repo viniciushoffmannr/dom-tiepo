@@ -6,7 +6,7 @@ import Footer from './Footer'
 import Header from './Header'
 
 const Cart: React.FC = () => {
-  const { cartItems, totalPrice } = useContext(CartContext)!
+  const { cartItems, totalPrice, hasDiscount } = useContext(CartContext)!
   const [observationArea, setObservationArea] = useState<string>('')
   const navigate = useNavigate()
 
@@ -15,7 +15,18 @@ const Cart: React.FC = () => {
       <Header />
 
       {cartItems.length === 0 ? (
-        <p className="text-red-600">Seu carrinho está vazio.</p>
+        <div className="p-2 flex items-center h-full flex-col">
+          <p className="text-red-600 text-xl font-bold mb-4">
+            Seu carrinho está vazio.
+          </p>
+          <button
+            onClick={() => navigate('/')}
+            type="button"
+            className="bg-gray-400 w-5/6 rounded p-2"
+          >
+            <p className="font-bold text-white">Entendi</p>
+          </button>
+        </div>
       ) : (
         <div className="p-2 gap-3 flex flex-col">
           {cartItems.map((item) => (
@@ -29,6 +40,14 @@ const Cart: React.FC = () => {
             placeholder="Alguma observação? Ex tirar cebola, etc."
             rows={2}
           />
+          {hasDiscount && (
+            <div>
+              <p className="text-sm font-semibold text-white text-center">
+                O combo pizza doce + salgada foi selecionado!
+              </p>
+            </div>
+          )}
+
           <div className="flex justify-between items-center font-bold text-lg">
             <span className="font-bold text-white">Total:</span>
             <span className="font-bold text-red-600">
@@ -36,7 +55,7 @@ const Cart: React.FC = () => {
             </span>
           </div>
 
-          <div className="flex flex-col gap-3 items-center w-full mt-5">
+          <div className="flex flex-col gap-3 items-center w-full mt-5 mb-24">
             <button
               onClick={() => navigate('/address')}
               type="button"
@@ -53,10 +72,9 @@ const Cart: React.FC = () => {
               <p className="font-bold text-white">Cancelar</p>
             </button>
           </div>
-
-          <Footer />
         </div>
       )}
+      <Footer />
     </div>
   )
 }
