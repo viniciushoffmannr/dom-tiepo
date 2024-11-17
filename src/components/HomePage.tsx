@@ -23,6 +23,13 @@ const HomePage: React.FC = () => {
           Menu de Pizzas
         </h1>
         <div className="grid gap-4 ">
+          <div className="border rounded border-red-500 bg-zinc-300 p-2 flex flex-col sm:flex-row sm:items-center gap-1">
+            <p className="font-bold text-sm whitespace-nowrap">
+              Sobre nossa massa:
+            </p>
+            <p className="text-sm">Farinha, sal, açúcar, fermento e água</p>
+          </div>
+
           {products.map((product) => (
             <Items key={product.id} product={product} isCart={false} />
           ))}
